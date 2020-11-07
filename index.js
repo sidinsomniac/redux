@@ -2,6 +2,8 @@ const redux = require('redux');
 const createStore = redux.createStore;
 const combineReducers = redux.combineReducers;
 
+
+// INITIAL STATE
 const initialBookState = {
     numberOfBooks: 23,
     price: 46
@@ -11,21 +13,26 @@ const initialDVDState = {
     numberOfDVDs: 56,
     price: 168
 };
+// INITIAL STATE
 
+
+// ACTION DECLARATION
 const BUY_BOOKS = "BUY_BOOKS";
+const BUY_DVDS = "BUY_DVDS";
 
 const buyBooks = () => ({
     type: BUY_BOOKS,
     info: "Buys books"
 });
 
-const BUY_DVDS = "BUY_DVDS";
-
 const buyDVDs = () => ({
     type: BUY_DVDS,
     info: "Buys DVDs"
 });
+// ACTION DECLARATION
 
+
+// REDUCER DECLARATION
 const bookReducer = (state = initialBookState, action) => {
     switch (action.type) {
         case BUY_BOOKS:
@@ -43,7 +50,10 @@ const DVDReducer = (state = initialDVDState, action) => {
             return state;
     }
 };
+// REDUCER DECLARATION
 
+
+// DISPATCHING AND SUBSCRIBING OF ACTIONS
 const rootReducer = combineReducers({
     books: bookReducer,
     dvds: DVDReducer
@@ -55,3 +65,4 @@ store.dispatch(buyBooks());
 store.dispatch(buyDVDs());
 store.dispatch(buyBooks());
 unsub();
+// DISPATCHING AND SUBSCRIBING OF ACTIONS
