@@ -1,6 +1,10 @@
 const redux = require('redux');
+const reduxLogger = require('redux-logger');
+
 const createStore = redux.createStore;
 const combineReducers = redux.combineReducers;
+const applyMiddleware = redux.applyMiddleware;
+const logger = reduxLogger.createLogger();
 
 
 // INITIAL STATE
@@ -58,7 +62,7 @@ const rootReducer = combineReducers({
     books: bookReducer,
     dvds: DVDReducer
 });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 console.log("Redux initial store: ", store.getState());
 const unsub = store.subscribe(() => (console.log('Updated Store', store.getState())));
 store.dispatch(buyBooks());
